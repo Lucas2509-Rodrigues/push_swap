@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lurodri2 <lurodri2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:45:51 by lurodri2          #+#    #+#             */
-/*   Updated: 2026/11/14 15:12:56 by lurodri2         ###   ########.fr       */
+/*   Updated: 2026/11/20 15:35:19 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,45 @@ void	push(t_node **dst, t_node **src)
     p = pop_front(src);
     push_front(dst, p);
 }
-
-
-int	main(void)
+int		aux_sign(char c, int *i)
 {
-	t_node	*src;
+	int	sign;
 
-
-	src = NULL;
-	push_front(&src, new_node(3));
-    push_front(&src, new_node(2));
-    push_front(&src, new_node(1));
-	rotate(&src);
-    print_stack(src);
-    free_stack(&src);
-	return (0);
+	sign = 1;
+	if (c == '-' || c == '+')
+	{
+		if (c == '-')
+			sign = -sign;
+		(*i)++;
+	}
+	return (sign);
 }
+int	parse_int(const char *str, int *out)
+{
+	int	sign;
+	int	i;
+	long	result;
+	
+	if (!str)
+		return (0);
+	i = 0;
+	result = 0; 
+	sign = aux_sign(str[i], &i);
+	if (!(str[i] >= '0' && str[i] <= '9'))
+		return (0);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = (result * 10) + str[i] - '0';
+		if (result > 2147483647 && sign == 1)
+			return (0);
+		if (result > 2147483648 && sign == -1)
+			return (0);
+		i++;
+	}
+	if (str[i] != '\0')
+		return (0);
+	*out = (int)(result * sign);
+	return (1); 
+}
+
+

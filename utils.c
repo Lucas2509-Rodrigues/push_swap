@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lurodri2 <lurodri2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:53:09 by lurodri2          #+#    #+#             */
-/*   Updated: 2026/11/14 12:33:23 by lurodri2         ###   ########.fr       */
+/*   Updated: 2026/11/18 16:11:33 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,40 +44,29 @@ t_node	*pop_front(t_node **head)
 	return (p);
 }
 
-int	stack_size(t_node *head)
-{
-	int	count;
 
-	if (!head)
-		return (0);
-	count = 0;
-	while (head)
-	{
-		count++;
-		head = head->next;
-	}
-	return (count);
-}
 
-void	print_stack(t_node *head)
+/*int	ft_atoi(const char *str)
 {
-	while (head)
+	int		i;
+	long	resultado;
+	int		sign;
+
+	sign = 1;
+	i = 0;
+	resultado = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		printf("[%d]->", head->value);
-		head = head->next;
+		if (str[i] == '-')
+			sign = -sign;
+		i++;
 	}
-	printf("NULL\n");
-}
-void	free_stack(t_node **head)
-{
-    t_node  *p;
-    if (!head || !*head)
-        return ;
-    while(*head)
-    {
-        p = (*head)->next;
-        free(*head);
-        *head = p;
-    }
-    *head = NULL;
-}
+	while (ft_isdigit(str[i]))
+	{
+		resultado = (resultado * 10) + str[i] - '0';
+		i++;
+	}
+	return ((int)(resultado * sign));
+}*/

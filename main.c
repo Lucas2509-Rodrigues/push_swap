@@ -7,16 +7,21 @@ int main (int ac, char *av[])
 
     a = NULL;
 
-    init_stack(&a, av);
     if (ac == 1 || !av[2])
         return (1);
+    init_stack(&a, av);
+    if (a == NULL)
+    {
+        printf("Error\n");
+        return (1);
+    }
     if (is_sorted(a))
     {
         printf("the stack is already sorted");
     }
     else if (stack_size(a) == 2)
     {
-        swap_top(&a);
+        sa(&a);
         print_stack(a);
     }
     else if (stack_size(a) == 3)

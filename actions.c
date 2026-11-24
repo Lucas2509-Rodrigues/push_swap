@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 //sa e sb
-void	swap_top(t_node **head)
+void	sa(t_node **head)
 {
 	t_node	*aux;
 	t_node	*aux_2;
@@ -25,9 +25,10 @@ void	swap_top(t_node **head)
 	aux->next = *head;
 	(*head)->next = aux_2;
 	*head = aux;
+	write(1, "sa\n", 3);
 }
 //ra rb
-void	rotate(t_node **head)
+void	ra(t_node **head)
 {
 	t_node	*aux;
 	t_node	*aux_2;
@@ -41,9 +42,10 @@ void	rotate(t_node **head)
 	aux_2 = (*head)->next;
 	(*head)->next = NULL;
 	*head = aux_2;
+	write(1, "ra\n", 3);
 }
 //rra e rrb
-void	reverse_rotate(t_node **head)
+void	rra(t_node **head)
 {
 	t_node	*aux;
 	t_node	*aux_2;
@@ -57,15 +59,17 @@ void	reverse_rotate(t_node **head)
 	aux_2->next = *head;
 	*head = aux_2;
 	aux->next = NULL;
+	write(1, "rra\n", 4);
 }
 //pa e pb
-void	push(t_node **dst, t_node **src)
+void	pa(t_node **dst, t_node **src)
 {
     t_node  *p;
     if (!src || !*src || !dst)
         return ;
     p = pop_front(src);
     push_front(dst, p);
+	write(1, "pa\n", 3);
 }
 int		aux_sign(char c, int *i)
 {

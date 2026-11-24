@@ -28,9 +28,9 @@ void	sort_three(t_node **a)
 
 	max = find_max(*a);
 	if (*a == max)
-		rotate(a);
+		ra(a);
 	else if ((*a)->next == max)
-		reverse_rotate(a);
+		rra(a);
 	if ((*a)->value > (*a)->next->value)
-		swap_top(a);
+		sa(a);
 }

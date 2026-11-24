@@ -60,10 +60,10 @@ t_node	*find_max(t_node *a);
 /*                       OPERATIONS (swap / push / rotate)                    */
 /* ************************************************************************** */
 
-void	swap_top(t_node **head);
-void	push(t_node **dst, t_node **src);
-void	rotate(t_node **head);
-void	reverse_rotate(t_node **head);
+void	sa(t_node **head);
+void	pa(t_node **dst, t_node **src);
+void	ra(t_node **head);
+void	rra(t_node **head);
 
 /* ************************************************************************** */
 /*                           PARSING / VALIDATION                             */

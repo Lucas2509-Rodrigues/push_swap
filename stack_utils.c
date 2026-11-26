@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 15:01:00 by lucas             #+#    #+#             */
-/*   Updated: 2026/11/20 15:05:29 by lucas            ###   ########.fr       */
+/*   Updated: 2026/11/26 10:47:26 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,42 @@ int	stack_size(t_node *head)
 ** DEBUG ONLY: prints the stack from top to bottom.
 ** printf is not allowed in the final project: remove before submitting.
 */
-void	print_stack(t_node *head)
+void	print_stack(t_info *info)
 {
-	while (head)
+	int i;
+
+	i = 0;
+	while (i < COUNTS_ACTIONS)
 	{
-		printf("[%d]->", head->value);
-		head = head->next;
+		printf("[%d]->%d\n", i, info->counts[i] );
+		info->total += info->counts[i];
+		i++;
 	}
-	printf("NULL\n");
+	printf("%d\n", info->total);
+}
+double 	disorder(t_node *a)
+{
+	double count;
+	t_node *tmp;
+	long size;
+	long pairs;
+
+	size = stack_size(a);
+	if (!a || size < 2)
+		return (0);
+	count = 0;
+	pairs = (size * (size - 1)) / 2;	
+	while (a->next != NULL)
+	{
+		tmp = a;
+		while (tmp->next != NULL)
+		{
+		if (a->value > tmp->next->value)
+			count++;
+		tmp = tmp->next;
+		}
+		a = a->next;
+	}
+	count = count / pairs;
+	return (count);
 }

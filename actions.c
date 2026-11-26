@@ -6,70 +6,50 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:45:51 by lurodri2          #+#    #+#             */
-/*   Updated: 2026/11/20 15:35:19 by lucas            ###   ########.fr       */
+/*   Updated: 2026/11/26 10:41:37 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 //sa e sb
-void	sa(t_node **head)
+void	sa(t_info *info)
 {
-	t_node	*aux;
-	t_node	*aux_2;
-
-	if (!head || !*head || !(*head)->next)
+	swap(&info->a);
+	if (!info->a || !info->a->next)
 		return ;
-	aux = (*head)->next;
-	aux_2 = aux->next;
-	aux->next = *head;
-	(*head)->next = aux_2;
-	*head = aux;
 	write(1, "sa\n", 3);
+	info->counts[SA]++;
 }
 //ra rb
-void	ra(t_node **head)
+void	ra( t_info *info)
 {
-	t_node	*aux;
-	t_node	*aux_2;
-
-	if (!head || !*head || !(*head)->next)
+	rotate(&info->a);
+	if (!info->a || !info->a->next)
 		return ;
-	aux = *head;
-	while (aux->next != NULL)
-		aux = aux->next;
-	aux->next = *head;
-	aux_2 = (*head)->next;
-	(*head)->next = NULL;
-	*head = aux_2;
 	write(1, "ra\n", 3);
+	info->counts[RA]++;
 }
 //rra e rrb
-void	rra(t_node **head)
+void	rra(t_info *info)
 {
-	t_node	*aux;
-	t_node	*aux_2;
-
-	if (!head || !*head || !(*head)->next)
+	reverse_rotate(&info->a);
+	if (!info->a || !info->a->next)
 		return ;
-	aux = *head;
-	while (aux->next->next != NULL)
-		aux = aux->next;
-	aux_2 = aux->next;
-	aux_2->next = *head;
-	*head = aux_2;
-	aux->next = NULL;
 	write(1, "rra\n", 4);
+	info->counts[RRA]++;
 }
+
 //pa e pb
-void	pa(t_node **dst, t_node **src)
+void	pa(t_info *info)
 {
-    t_node  *p;
-    if (!src || !*src || !dst)
+
+   
+	pp(&info->a, &info->b);
+	if (!info->b || !info->a)
         return ;
-    p = pop_front(src);
-    push_front(dst, p);
 	write(1, "pa\n", 3);
+	info->counts[PA]++;
 }
 int		aux_sign(char c, int *i)
 {

@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 15:01:00 by lucas             #+#    #+#             */
-/*   Updated: 2026/11/20 15:16:16 by lucas            ###   ########.fr       */
+/*   Updated: 2026/11/24 15:46:31 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,31 @@ t_node	*find_max(t_node *a)
 		a = a->next;
 	}
 	return (max);
+}
+t_node	*find_min(t_node *a)
+{
+	t_node	*min;
+
+	min = a;
+	while (a)
+	{
+		if (min->value > a->value)
+			min = a;
+		a = a->next;
+	}
+	return (min);
+}
+int	find_index(t_node *a, t_node *min)
+{
+	int	  index;
+
+	index = 0;
+	while (a)
+	{
+		if (a == min)
+			return (index);	
+		index++;
+		a = a->next;
+	}
+	return (index);
 }

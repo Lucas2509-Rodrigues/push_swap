@@ -1,86 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   actions.c                                          :+:      :+:    :+:   */
+/*   actions_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:45:51 by lurodri2          #+#    #+#             */
-/*   Updated: 2026/11/20 15:35:19 by lucas            ###   ########.fr       */
+/*   Updated: 2026/11/26 10:42:20 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 //sa e sb
-void	sb(t_node **head)
+void	sb(t_info *info)
 {
-	t_node	*aux;
-	t_node	*aux_2;
-
-	if (!head || !*head || !(*head)->next)
+	swap(&info->b);
+	if (!info->b || !info->b->next)
 		return ;
-	aux = (*head)->next;
-	aux_2 = aux->next;
-	aux->next = *head;
-	(*head)->next = aux_2;
-	*head = aux;
 	write(1, "sb\n", 3);
+	info->counts[SB]++;
 }
 //ra rb
-void	rb(t_node **head)
+void	rb(t_info *info)
 {
-	t_node	*aux;
-	t_node	*aux_2;
-
-	if (!head || !*head || !(*head)->next)
+	rotate(&info->b);
+	if (!info->b || !info->b->next)
 		return ;
-	aux = *head;
-	while (aux->next != NULL)
-		aux = aux->next;
-	aux->next = *head;
-	aux_2 = (*head)->next;
-	(*head)->next = NULL;
-	*head = aux_2;
 	write(1, "rb\n", 3);
-}
-//rra e rrb
-void	rrb(t_node **head)
-{
-	t_node	*aux;
-	t_node	*aux_2;
+	info->counts[RB]++;
+}	
 
-	if (!head || !*head || !(*head)->next)
+//rra e rrb
+void	rrb(t_info *info)
+{
+	reverse_rotate(&info->b);
+	if (!info->b || !info->b->next)
 		return ;
-	aux = *head;
-	while (aux->next->next != NULL)
-		aux = aux->next;
-	aux_2 = aux->next;
-	aux_2->next = *head;
-	*head = aux_2;
-	aux->next = NULL;
 	write(1, "rrb\n", 4);
+	info->counts[RRB]++;
 }
 //pa e pb
-void	pb(t_node **dst, t_node **src)
+void	pb(t_info *info)
 {
-    t_node  *p;
-    if (!src || !*src || !dst)
-        return ;
-    p = pop_front(src);
-    push_front(dst, p);
-    write(1, "pb\n", 3);
-}
-int		aux_sign(char c, int *i)
-{
-	int	sign;
 
-	sign = 1;
-	if (c == '-' || c == '+')
-	{
-		if (c == '-')
-			sign = -sign;
-		(*i)++;
-	}
-	return (sign);
+   
+	pp(&info->b, &info->a);
+	 if (!info->b || !info->a)
+        return ;
+	write(1, "pb\n", 3);
+	info->counts[PB]++;
 }

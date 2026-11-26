@@ -3,31 +3,39 @@
 int main (int ac, char *av[])
 {
 
-    t_node *a;
+    t_info info;
+    
 
-    a = NULL;
-
+    
     if (ac == 1 || !av[2])
-        return (1);
-    init_stack(&a, av);
-    if (a == NULL)
+        return (0);
+    init_info(&info);
+    init_stack(&info.a, av);
+    if (info.a == NULL)
     {
         printf("Error\n");
         return (1);
     }
-    if (is_sorted(a))
+    if (is_sorted(info.a))
     {
-        printf("the stack is already sorted");
+       // printf("the stack is already sorted");
     }
-    else if (stack_size(a) == 2)
+    else if (stack_size(info.a) == 2)
     {
-        sa(&a);
-        print_stack(a);
+        sa(&info);
+       print_stack(&info);
     }
-    else if (stack_size(a) == 3)
+    else if (stack_size(info.a) == 3)
     {
-        sort_three(&a);
-        print_stack(a);
+        sort_three(&info);
+        print_stack(&info);
+    }
+    else if (stack_size(info.a) == 5 || stack_size(info.a) == 4)
+    {
+        sort_five(&info);
+        //print_stack(info.a);
     }
     return (0);
 }
+
+

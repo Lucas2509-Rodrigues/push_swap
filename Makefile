@@ -8,7 +8,10 @@ SRCS	= main.c \
 		  parsing.c \
 		  sort.c \
 		  utils.c \
-		  actions.c
+		  actions.c \
+		  actions_b.c \
+		  dual_actions.c \
+		  helper.c 	
 OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)

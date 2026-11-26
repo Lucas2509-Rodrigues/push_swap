@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_2.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 11:53:09 by lurodri2          #+#    #+#             */
-/*   Updated: 2026/11/18 16:11:33 by lucas            ###   ########.fr       */
+/*   Updated: 2026/11/26 09:36:52 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,29 +44,3 @@ t_node	*pop_front(t_node **head)
 	return (p);
 }
 
-
-
-/*int	ft_atoi(const char *str)
-{
-	int		i;
-	long	resultado;
-	int		sign;
-
-	sign = 1;
-	i = 0;
-	resultado = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -sign;
-		i++;
-	}
-	while (ft_isdigit(str[i]))
-	{
-		resultado = (resultado * 10) + str[i] - '0';
-		i++;
-	}
-	return ((int)(resultado * sign));
-}*/
